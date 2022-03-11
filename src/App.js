@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import MainNav from "./components/nav"
 import Footer from './components/footer';
-import { Button, Container, Form, Row, Col, Spinner, Alert, Toast } from 'react-bootstrap';
+import { Button, Container, Form, Row, Col, Spinner} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faFloppyDisk, faLock } from '@fortawesome/free-solid-svg-icons'
 import UrlList from './components/urlList';
@@ -30,13 +30,13 @@ function App() {
 
   // THIS WILL ALSO REMOVE FROM LOCAL STORAGE AS USE EFFECT IS LISTENING.
   const removeURL = (url) => {
-    setURLs(urls.filter(e => e.short != url))
+    setURLs(urls.filter(e => e.short !== url))
   }
 
 
   const handleSubmit = () => {
     // First check URL is valid against regex
-    const regex = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
+    const regex = /[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/
     if (!regex.test(inputVal)) {
       // Input will listen to this state to render error message. 
       setInvalid(true)

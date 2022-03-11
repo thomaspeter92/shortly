@@ -35,7 +35,7 @@ const SignUp = ({show, toggleShow}) => {
         // destructure form data for checking. 
         const {name, email, pass, pass2 } = form
         const currentErrors = {}
-        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
         const passRegex =/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
 
         if(!name || name.replace(/ /g,'') === "") {
