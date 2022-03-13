@@ -126,7 +126,7 @@ function App() {
        <Row className='justify-content-center'>
          {/* CONDITIONALLY RENDER URLS IF THEY EXIST */}
          <Col lg={6} md={8}>
-           { urls.length > 0 ?
+           {  urls && urls.length > 0 ?
 
             <UrlList data={urls} handleDelete={removeURL}/>
             :
