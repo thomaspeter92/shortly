@@ -9,6 +9,7 @@ import { faCoffee, faFloppyDisk, faLock } from '@fortawesome/free-solid-svg-icon
 import UrlList from './components/urlList';
 import { useEffect } from 'react';
 import SignUp from './components/signUp';
+import isURL from 'validator/lib/isURL';
 
 
 function App() {
@@ -20,8 +21,13 @@ function App() {
 
   // WHEN COMPONENT MOUNTS, CHECK LOCAL SOTRAGE FOR PAST SAVED URLS
   useEffect(() => {
-    setURLs(JSON.parse(localStorage.getItem('short_urls')))
+    if(localStorage.getItem('short_urls')) {
+      setURLs(JSON.parse(localStorage.getItem('short_urls')))
+      // console.log(JSON.parse(localStorage.getItem('short_urls')))
+    }
   },[])
+
+  console.log(urls)
 
   // UPDATE LOCAL STORAGE WHENEVER URLS STATE CHANGES
   useEffect(() => {
@@ -33,11 +39,11 @@ function App() {
     setURLs(urls.filter(e => e.short !== url))
   }
 
+  const handleSubmit = (e) => {
+    // First check URL is valid 
+    e.preventDefault()
 
-  const handleSubmit = () => {
-    // First check URL is valid against regex
-    const regex = /[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/
-    if (!regex.test(inputVal)) {
+    if (!isURL(inputVal)) {
       // Input will listen to this state to render error message. 
       setInvalid(true)
       return
